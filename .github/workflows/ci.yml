@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   setup-and-test:
-    runs-on: [self-hosted, linux, x64]  # This line is changed
+    runs-on: self-hosted  # This line is changed
     services:
       postgresql:
         image: postgres:14
@@ -48,7 +48,7 @@ jobs:
     # ...
 
   deploy-to-dev:
-    runs-on: ubuntu-20.04
+    runs-on: self-hosted
     needs: setup-and-test
     steps:
     - uses: actions/checkout@v2
@@ -58,7 +58,7 @@ jobs:
         # Your deployment script for dev
 
   deploy-to-staging:
-    runs-on: ubuntu-20.04
+    runs-on: self-hosted
     needs: setup-and-test
     steps:
     - uses: actions/checkout@v2
@@ -68,7 +68,7 @@ jobs:
         # Your deployment script for staging
 
   deploy-to-production:
-    runs-on: ubuntu-20.04
+    runs-on: self-hosted
     needs: setup-and-test
     steps:
     - uses: actions/checkout@v2
